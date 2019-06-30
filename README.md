@@ -2,6 +2,8 @@
 
 This is the starter code for the Route Planning project. Instructions for each exercise can be found in the `instructions` directory, and unit tests for some exercises in the `test` directory.
 
+This fork is used for the purpose of this users local project build and submission to udacity's c++ nanodegree program. 
+
 ## Cloning
 
 When cloning this project, be sure to use the `--recurse-submodules` flag. Using HTTPS:
