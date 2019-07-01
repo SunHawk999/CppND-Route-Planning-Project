@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <limits>
 #include <cmath>
 #include <unordered_map>
@@ -21,6 +22,10 @@ class RouteModel : public Model {
         float g_value = 0.0;                                  
         bool visited = false;                              
         std::vector<Node *> neighbors;  //Vector of Node pointers
+
+        float Distance(Node other) const{
+          return std::sqrt(std::pow((x - other.x), 2) + std::pow((y - other.y), 2));
+        }
 
       
       private:
