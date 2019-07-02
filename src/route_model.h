@@ -1,5 +1,7 @@
-#pragma once
+//#pragma once
 
+#ifndef ROUTE_MODEL_H
+#define ROUTE_MODEL_H
 
 #include <limits>
 #include <cmath>
@@ -38,11 +40,17 @@ class RouteModel : public Model {
     RouteModel(const std::vector<std::byte> &xml); 
     auto &SNodes(){ return m_Nodes;}    //Getter method 
     std::vector<Node> path; // This variable will eventually store the path that is found by the A* search.
+    
+    auto &GetNodeToRoadMap(){return node_to_road;}
 
 
 
   private:
     // Add private RouteModel variables and methods here.
+    std::unordered_map<int, std::vector<const Model::Road*>>node_to_road;
+    void CreateNodeToRaodHashmap();
     std::vector<Node> m_Nodes;  //Store all of the nodes from the Open Street Map data
 
 };
+
+#endif
