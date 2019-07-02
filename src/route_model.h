@@ -47,7 +47,7 @@ class RouteModel : public Model {
 
     std::vector<Node> path; // This variable will eventually store the path that is found by the A* search.
     
-    
+    Node &FindClosestNode(float x, float y);
 
 
 

@@ -48,3 +48,26 @@ void RouteModel::Node::FindNeighbors(){
             }
     }
 }
+
+RouteModel::Node &RouteModel::FindClosestNode(float x, float y){
+    Node inNode;
+    inNode.x = x;
+    inNode.y = y;
+
+    float min_dist = std::numeric_limits<float>::max();
+    float dist;
+    int closest_idx;
+
+    for(const Model::Road &road : Roads()){
+        if(road.type != Model::Road::Type::Footway){
+            for(int node_idx : Ways()[road.way].nodes){
+                dist = inNode.Distance(SNodes()[node_idx]);
+                if(dist < min_dist){
+                    closest_idx = node_idx;
+                    min_dist = dist;
+                }
+            }
+        }
+    }
+    return SNodes()[closest_idx];
+}
