@@ -10,8 +10,8 @@ RoutePlanner::RoutePlanner(RouteModel &model, float start_x, float start_y, floa
     end_y *= 0.01;
 
     //Should be pointers? When attaching & to m_model, running make fails
-    start_node = m_Model.FindClosestNode(start_x, start_y);
-    end_node = m_Model.FindClosestNode(end_x, end_y);
+    start_node = &m_Model.FindClosestNode(start_x, start_y);
+    end_node = &m_Model.FindClosestNode(end_x, end_y);
 }
 
     std::vector<RouteModel::Node>RoutePlanner::ConstructFinalPath(RouteModel::Node *current_node){
@@ -29,4 +29,10 @@ RoutePlanner::RoutePlanner(RouteModel &model, float start_x, float start_y, floa
         path_found.push_back(*current_node);
         distance *= m_Model.MetricScale();
         return path_found;
-    }  
+    }
+
+    void RoutePlanner::AStarSearch(){
+        end_node->parent = start_node;
+        m_Model.path = ConstructFinalPath(end_node);
+        return;
+    }
