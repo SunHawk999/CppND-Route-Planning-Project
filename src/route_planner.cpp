@@ -36,3 +36,7 @@ RoutePlanner::RoutePlanner(RouteModel &model, float start_x, float start_y, floa
         m_Model.path = ConstructFinalPath(end_node);
         return;
     }
+
+    float RoutePlanner::CalculateHValue(RouteModel::Node *node){
+        return node->Distance(*end_node);
+    }

@@ -25,6 +25,8 @@ class RoutePlanner {
     RouteModel::Node *end_node;
     //Will hold the total distance for the route that A* search finds from start to end
     float distance;
+
+    float CalculateHValue(RouteModel::Node *node);
     
    
 
