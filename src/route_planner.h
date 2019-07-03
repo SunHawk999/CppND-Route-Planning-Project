@@ -14,11 +14,16 @@ class RoutePlanner {
 
   private:
     // Add private variables or methods declarations here.
+    
+    std::vector<RouteModel::Node> ConstructFinalPath(RouteModel::Node *);
+
     RouteModel &m_Model;
     //start and end node will point to the nodes in the model which are closest to the starting and ending points
     RouteModel::Node start_node;
     RouteModel::Node end_node;
     //Will hold the total distance for the route that A* search finds from start to end
     float distance;
+    
+   
 
 };
