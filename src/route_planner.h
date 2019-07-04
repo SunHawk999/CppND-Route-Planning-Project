@@ -31,9 +31,4 @@ class RoutePlanner {
     //Will hold the total distance for the route that A* search finds from start to end
     float distance;
     std::vector<RouteModel::Node*> open_list;
-    
-    
-
-   
-
 };
