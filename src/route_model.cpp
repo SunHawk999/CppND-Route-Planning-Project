@@ -31,8 +31,8 @@ RouteModel::Node *RouteModel::Node::FindNeighbor(std::vector<int> node_indices){
     for(int node_index : node_indices){
         node = parent_model->SNodes()[node_index];
         //Need to review how classes can work...
-        if(this->Distance(node) != 0 && !node.visited){
-            if(closest_node == nullptr || (this->Distance(node)) < (this->Distance(*closest_node))){
+        if(this->distance(node) != 0 && !node.visited){
+            if(closest_node == nullptr || (this->distance(node)) < (this->distance(*closest_node))){
                 closest_node = &parent_model->SNodes()[node_index];
             }
         }
@@ -61,7 +61,7 @@ RouteModel::Node &RouteModel::FindClosestNode(float x, float y){
     for(const Model::Road &road : Roads()){
         if(road.type != Model::Road::Type::Footway){
             for(int node_idx : Ways()[road.way].nodes){
-                dist = inNode.Distance(SNodes()[node_idx]);
+                dist = inNode.distance(SNodes()[node_idx]);
                 if(dist < min_dist){
                     closest_idx = node_idx;
                     min_dist = dist;
