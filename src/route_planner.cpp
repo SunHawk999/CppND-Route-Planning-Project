@@ -53,3 +53,20 @@ RouteModel::Node *RoutePlanner::NextNode(){
     open_list.erase(open_list.begin());
     return lowest_node;
 }
+
+void RoutePlanner::AddNeighbors(RouteModel::Node *current_node){
+    //Populate curren_node's neighbors vector with FindNeighbors()
+    current_node->FindNeighbors();
+
+    //Iterate over neighbors and modify each neighbor values
+    for(auto neighbor : current_node->neighbors){
+        neighbor->parent = current_node;
+        neighbor->g_value = current_node->g_value + current_node->Distance(*neighbor);
+        neighbor->h_value = CalculateHValue(neighbor);
+
+        //Push back each neighbor into open_list and set as visited
+        open_list.push_back(neighbor);
+        neighbor->visited = true;
+
+    }
+}
