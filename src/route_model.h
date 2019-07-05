@@ -27,10 +27,10 @@ class RouteModel : public Model {
 
         float distance(Node other) const{
           return std::sqrt(std::pow((x - other.x), 2) + std::pow((y - other.y), 2));
+          std::cout<<"test\n";
         }
 
         void FindNeighbors();
-
       
       private:
         // Add private Node variables and methods here.
@@ -49,15 +49,11 @@ class RouteModel : public Model {
     
     Node &FindClosestNode(float x, float y);
 
-
-
   private:
     // Add private RouteModel variables and methods here.
     void CreateNodeToRoadHashmap();
     std::unordered_map<int, std::vector<const Model::Road*>>node_to_road;
     std::vector<Node> m_Nodes;  //Store all of the nodes from the Open Street Map data
-    
-
 };
 
 #endif
