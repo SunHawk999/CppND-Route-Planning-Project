@@ -50,11 +50,7 @@ int main(int argc, const char **argv)
             osm_data = std::move(*data);
     }
     
-<<<<<<< HEAD
     
-=======
-    /*
->>>>>>> b56aff97ae721d02ea59c476d32ea966b46017bd
     float start_x, start_y, end_x, end_y; 
 
     std::cout << "\nInput a value between 0 and 100 for start_x: ";
@@ -68,21 +64,13 @@ int main(int argc, const char **argv)
 
     std::cout << "\nInput a value between 0 and 100 for end_y: ";
     std::cin >> end_y; 
-<<<<<<< HEAD
     
-=======
-    */
->>>>>>> b56aff97ae721d02ea59c476d32ea966b46017bd
     // Build Model.
     RouteModel model{osm_data};
 
     // Perform search and render results.
     //RoutePlanner route_planner{model, start_x, start_y, end_x, end_y};
-<<<<<<< HEAD
     RoutePlanner route_planner(model, start_x, start_y, end_x, end_y);
-=======
-    RoutePlanner route_planner(model, 0, 0, 40, 50);
->>>>>>> b56aff97ae721d02ea59c476d32ea966b46017bd
     
     //Call AStarSearch on RoutePlanner object
     route_planner.AStarSearch();
