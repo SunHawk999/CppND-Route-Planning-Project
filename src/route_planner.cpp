@@ -13,11 +13,9 @@ RoutePlanner::RoutePlanner(RouteModel &model, float start_x, float start_y, floa
     end_node = &m_Model.FindClosestNode(end_x, end_y);
 }
 
-std::vector<RouteModel::Node>RoutePlanner::ConstructFinalPath(RouteModel::Node *current_node){
-    float distance = 0.0;
+std::vector<RouteModel::Node> RoutePlanner::ConstructFinalPath(RouteModel::Node *current_node){
     std::vector<RouteModel::Node> path_found;
     RouteModel::Node parent;
-
     
     while(current_node->parent != nullptr){
         path_found.push_back(*current_node);
@@ -25,9 +23,9 @@ std::vector<RouteModel::Node>RoutePlanner::ConstructFinalPath(RouteModel::Node *
         distance += current_node->distance(parent);
         current_node = current_node->parent;
     }
-
     path_found.push_back(*current_node);
     distance *= m_Model.MetricScale();
+    
     return path_found;
 }
 
@@ -36,11 +34,13 @@ void RoutePlanner::AStarSearch(){
     start_node->visited = true;
     open_list.push_back(start_node);
     RouteModel::Node *current_node = nullptr;
+    
     while(open_list.size() > 0){
         //Set current_node to the results of NextNode
         current_node = NextNode();
         if(current_node->distance(*end_node) == 0){
             //Construct the final path and set results to m_model.path
+            
             m_Model.path = ConstructFinalPath(current_node);
             //exit the search
             return;

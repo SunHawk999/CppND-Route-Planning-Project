@@ -1,7 +1,7 @@
-//#pragma once
+#pragma once
 
-#ifndef ROUTE_MODEL_H
-#define ROUTE_MODEL_H
+//#ifndef ROUTE_MODEL_H
+//#define ROUTE_MODEL_H
 
 #include <limits>
 #include <cmath>
@@ -21,10 +21,11 @@ class RouteModel : public Model {
 
         Node * parent = nullptr;        //Node pointer to nullptr
         float h_value = std::numeric_limits<float>::max();    
-        float g_value = 0.0;                                  
+        float g_value = 0.0f;                                  
         bool visited = false;                              
         std::vector<Node *> neighbors;  //Vector of Node pointers
 
+        //Calculate euclidian distance
         float distance(Node other) const{
           return std::sqrt(std::pow((x - other.x), 2) + std::pow((y - other.y), 2)); 
         }
@@ -41,12 +42,12 @@ class RouteModel : public Model {
     
     // Add public RouteModel variables and methods here.
     RouteModel(const std::vector<std::byte> &xml); 
-    auto &SNodes(){ return m_Nodes;}    //Getter method
+    auto &SNodes(){return m_Nodes;}    //Getter method for private variable m_Nodes
     auto &GetNodeToRoadMap(){return node_to_road;}
 
-    std::vector<Node> path; // This variable will eventually store the path that is found by the A* search.
+    std::vector<RouteModel::Node> path; // This variable will eventually store the path that is found by the A* search.
     
-    Node &FindClosestNode(float x, float y);
+    RouteModel::Node &FindClosestNode(float x, float y);
 
   private:
     // Add private RouteModel variables and methods here.
@@ -54,5 +55,3 @@ class RouteModel : public Model {
     std::unordered_map<int, std::vector<const Model::Road*>>node_to_road;
     std::vector<Node> m_Nodes;  //Store all of the nodes from the Open Street Map data
 };
-
-#endif
