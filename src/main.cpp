@@ -69,7 +69,6 @@ int main(int argc, const char **argv)
 
     // Perform search and render results.
     RoutePlanner route_planner{model, start_x, start_y, end_x, end_y};
-    //RoutePlanner route_planner(model, 10.0f, 10.0f, 30.0f, 30.0f);
     
     //Call AStarSearch on RoutePlanner object
     route_planner.AStarSearch();
